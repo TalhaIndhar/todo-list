@@ -7,25 +7,26 @@
 </head>
 <style>
     
-#backgroundimage {
-                background-position: center;
-                background-attachment: fixed;
-                background-size: cover;
-                background-repeat: no-repeat;
-                
-}
+#Backgroundimage {
+    background-position: center;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+}  
+
+
 .todolist{
     width:100%;
     max-width: 540px;
-    background:black;
-    margin: 100px auto 20px;
+    background:RGB(0, 164, 239);
+    margin: 244px auto 20px;
     padding: 178px 30px 70px;
     border-radius: 10px;
 }
 .todolist h1 {
-       
+       text-align: center;
        font-weight: bolder;
-       color: rgb(255, 255, 255);
+       color: rgb(214, 0, 0);
        outline: 100%;
        font-style: oblique;
        cursor:pointer;
@@ -35,18 +36,59 @@
        
     }
     .todolist img {
-        width: 50px;
-        margin: -21px;
+        
+        margin: 0px -30px -96px;
+    width: 50px;
+
+        
+        
     }
+    .input {
+        position: relative;
+        padding: 30px 20px;
+    }
+    .input input{
+    width: 75%;
+    height: 45px;
+    padding: 12px;
+    color: #111111;
+    font-weight: 500;
+    position: relative;
+    border-radius: 33px;
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    border: 2px solid #d1d3d4;
+}
+.input button{
+    position: relative;
+    float: right;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: #b90a0a;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    width: 20%;
+    height: 45px;
+    border-radius: 5px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-top: 15px;
+    margin-right: -15px;
+} 
 </style>
 <header>
     
 </header>
-<body background="c:\Users\Talha Mehmood\Desktop\new to do list\nature-green-bokeh-soft-light-abstract-backgrounds-vector-47188707.jpg" id="backgroundimage">  
+<body background="c:\Users\Kma\Downloads\pexels-veeterzy-114979.jpg" id="Backgroundimage">  
     </div>
     <div class="todolist">
         <h1>To-Do List App</h1>
-        <img src="images.png">
+            <img src="download.png">
+        <div class="input">
+            <input type="text" placeholder="Add Task">
+            <button type="push">Add</button>
+        </div>
     </div>
 </body>
 </html>
