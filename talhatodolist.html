@@ -114,7 +114,13 @@
     function Add () {
         if(inputs.value == ""){
             alert("Please Enter A Task")
+        }else {
+        let messege = document.createElement("ul");
+        messege.innerHTML = inputs.value;
+        text.appendChild(messege);
+        inputs.value = "";
         }
+        
     }
 </script>
 </html>

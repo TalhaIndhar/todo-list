@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+<title>Form - Programming Javascript</title>
+</head>
+<body>
+<div id="main_page_div">
+    <div id="main_form_div">
+        <form id="contact_fomr" name="" action="#">
+            <label>Name</label>
+            <input type="text" name="name" id="input_name" />
+            <label>Email</label>
+            <input type="email" name="email" id="input_email" />
+            <label>Phone no</label>
+            <input type="tel" name="phone" id="input_phone" />
+            <label>Address</label>
+            <textarea id="address_text"></textarea>
+            <input type="button" onclick="saveData()" value="Save"/>
+        </form>
+        <a target="" href="index.html">Go to previous page</a>
+    </div>
+    <div style="border-top:2px solid black; margin-top: 10px;">
+        <table id="studentDataTable">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    // data types = boolean float integer string numbeer object array double decimal bigInteger time date binary txt blob
+    // students = ["shoaib", "hammad", "talha", "ayan"] Normal Array
+    // studentsDetail = [
+        // { name:"shoaib", age: "19", result: "82%"}, 
+        // { name:"hammad", age: "16", result: "84%"}, 
+        // { name:"talha", age: "17", result: "86%"}, 
+        // { name:"ayan", age: "15", result: "87%"}
+    // ] Array of Objects
+    
+    // classes = [1,2,3,4,5,6,7,8,9, "grade-1"]
+    // classes = [true,false, true]
+    // student = { name:"hammad", age: "22", result: "80%"}
+
+
+    // if examples and explanation
+    // && ka matlab donu conditions fullfill hony chaiye hai 
+    // || ka matlab koi bh condition fullfill kar rae ho
+
+    // if(name.value != "ahmed raza" && name.value != "Ahmed Raza") {
+    //     alert(name.value);
+    // } else if (name.value != "hamza" && name.value != "Hamza") {
+    //     alert(name.value);
+    // }
+    // else {
+    //     alert("condition isn't fullfill")
+    // }
+
+    // responsibility operator
+    // let const var javacript
+
+
+    // yeh batata hai is function ma kb kahan kia hora hai 
+    // debugger;
+
+    var studentsDetail = [];
+
+    var editStatus = false;
+
+    var currentStudentIndex = null;
+
+    var globalFields = ['input_name', 'input_phone', 'input_email', 'address_text'];
+
+    function saveData() {
+        debugger;
+         var name = document.getElementById("input_name");
+         var phone = document.getElementById("input_phone");
+         var email = document.getElementById("input_email");
+         var address = document.getElementById("address_text");
+
+         if(editStatus && currentStudentIndex != null ){
+            studentsDetail[currentStudentIndex] = {
+                "name": name.value,
+                "email": email.value,
+                "phone": phone.value,
+                "address": address.value,
+            };
+            currentStudentIndex = null;
+            editStatus = false;
+         } else {
+            studentsDetail.push(
+                {
+                    "name": name.value,
+                    "email": email.value,
+                    "phone": phone.value,
+                    "address": address.value,
+                }
+            );
+         }
+
+
+        clearData(globalFields);
+
+        renderTableData();
+    } 
+
+
+    /**
+     * This function is used for clearing data from fields
+     * 
+     * @param Array fields
+     * 
+     */
+    function clearData(fields = [], values = ["", "", "", ""]) {
+        for( var i = 0; i < fields.length; i++ ) {
+            document.getElementById(fields[i]).value = values[i]
+        }
+    }
+
+    
+    /**
+     * This function use to render Array in table
+     * 
+     * 
+     * 
+     */
+    function renderTableData() {
+        var table = document.getElementById("studentDataTable");
+        var tbody = table.children[1];
+        table.removeChild(tbody);
+    
+        var newTBody = document.createElement("tbody");
+        studentsDetail.forEach((student, index) => {
+            var tr = document.createElement("tr");
+            var detail = prepareTableData(student);
+            detail.forEach((val, dIndex) => {
+                var td = document.createElement("td");
+                td.innerHTML = val
+                tr.appendChild(td);
+            })
+            debugger;
+            var editAct = '<button onclick="editStudent('+index+')"> Edit </button>';
+            var deleteAct = '<button onclick="deleteStudent('+index+')"> Delete</button>';
+            var td = document.createElement("td");
+            td.innerHTML = editAct + deleteAct
+            tr.appendChild(td);
+
+            newTBody.appendChild(tr);
+        })
+        table.appendChild(newTBody);
+    }
+
+    /**
+     * This function gives us an array of data
+     * so we can render each value in seperate 
+     * "td"
+     * 
+     * @param Object student
+     * 
+     */
+    function prepareTableData(student) {
+        // spreading object like variable 
+        const { name, address, phone, email, ...rest } = student;
+        return [name,email,phone,address];
+    }
+
+    /**
+     * This function is removing data from array with the help of
+     * array methods "Splice" 
+     * 
+     * @param Integer index
+     * 
+     */ 
+    function deleteStudent(index = 0) {
+        studentsDetail.splice(index, 1);
+        renderTableData();
+    }
+
+    /**
+     * This function is removing data from array with the help of
+     * array methods "Splice" 
+     * 
+     * @param Integer index
+     * 
+     */ 
+     function editStudent(index = 0) {
+        editStatus = true;
+        currentStudentIndex = index;
+        const { name, address, phone, email, } = studentsDetail[index];
+        var values = [name,phone,email,address];
+        clearData(globalFields, values);
+    }
+
+
+</script>
+</body>
+</html>
