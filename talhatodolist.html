@@ -19,7 +19,8 @@
     width:100%;
     max-width: 540px;
     background:black;
-    margin: 244px auto 20px;
+    margin-top: -237px;
+    margin-left: 360px;
     padding: 178px 30px 70px;
     border-radius: 10px;
 }
@@ -57,7 +58,7 @@
     border-radius: 33px;
     font-family: 'Poppins',sans-serif;
     font-size: 15px;
-    border: 2px solid #d1d3d4;
+    border: 2px solid #ff0000;
 }
 .input button{
     position: relative;
@@ -76,9 +77,22 @@
     margin-top: 15px;
     margin-right: -15px;
 } 
+.image {
+    margin: -87px -104px 84px;
+}
+#inputbutton {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+.text {
+    color: #ffffff;
+}
 </style>
 <header>
-    
+    <div class="image">
+        <img src="c:\Users\Talha Mehmood\Downloads\2-removebg-preview.png">
+    </div>
 </header>
 <body background="c:\Users\Talha Mehmood\Downloads\joe-woods-4Zaq5xY5M_c-unsplash.jpg" id="Backgroundimage">  
     </div>
@@ -86,9 +100,21 @@
         <h1>To-Do List App</h1>
             <img src="task-list-minimal-vector-line-icon-3d-button-isolated-black-background-premium-vectorxa_570929-1494.avif">
         <div class="input">
-            <input type="text" placeholder="Add Task">
-            <button type="push">Add</button>
+            <input type="text" placeholder="Add Task" id="input">
+            <button onclick="Add()">Add</button>
+            <div class="text"></div>
         </div>
     </div>
+    
 </body>
+<script>
+    let inputs = document.getElementById("input");
+    let text = document.querySelector(".text");
+
+    function Add () {
+        if(inputs.value == ""){
+            alert("Please Enter A Task")
+        }
+    }
+</script>
 </html>
