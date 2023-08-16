@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List App By Talha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
     
@@ -18,8 +19,6 @@
     width:100%;
     max-width: 540px;
     background:black;
-    margin-top: -237px;
-    margin-left: 360px;
     padding: 178px 30px 70px;
     border-radius: 10px;
 }
@@ -37,8 +36,9 @@
        
     }
     .todolist img {
-        margin: 0px 190px -34px;
     width: 80px;
+    display: flex;
+    justify-content: center;
 
         
         
@@ -77,31 +77,53 @@
     margin-right: -15px;
 } 
 .image {
-    margin: -87px -104px 84px;
+    width: 200px;
 }
 #inputbutton {
     color: red;
     font-size: 20px;
     font-weight: bold;
 }
-.text {
-    color: #ffffff;
+.text ul {
+    color: #000000;
+    font-weight: bolder;
+    font-size: 30px;
+    background-color: #cccccc96;
+    border-radius: 10px;
+    padding: 15px 31px 22px ;
+    text-align: left;
+}
+.text ul i {
+    position: absolute;
+    right: 35px;
+    cursor:pointer;
+    margin-top: 5px;
+
+}
+.mainDiv {
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 </style>
 <header>
     <div class="image">
-        <img src="2-removebg-preview.png">
+        <img src="2-removebg-preview.png" width="200px">
     </div>
 </header>
 <body background="joe-woods-4Zaq5xY5M_c-unsplash.jpg" id="Backgroundimage">  
     </div>
-    <div class="todolist">
-        <h1>To-Do List App</h1>
-            <img src="task-list-minimal-vector-line-icon-3d-button-isolated-black-background-premium-vectorxa_570929-1494.avif">
-        <div class="input">
-            <input type="text" placeholder="Add Task" id="input">
-            <button onclick="Add()">Add</button>
-            <div class="text"></div>
+    <div class="mainDiv">
+        <div class="todolist">
+            <h1>To-Do List App</h1>
+                <img src="task-list-minimal-vector-line-icon-3d-button-isolated-black-background-premium-vectorxa_570929-1494.avif">
+            <div class="input">
+                <input type="text" placeholder="Add Task" id="input">
+                <button onclick="Add()">Add</button>
+                <div class="text">
+                    
+                </div>
+            </div>
         </div>
     </div>
     
@@ -115,9 +137,14 @@
             alert("Please Enter A Task")
         }else {
         let messege = document.createElement("ul");
-        messege.innerHTML = inputs.value;
+        messege.innerHTML = `${inputs.value} <i class="fa fa-solid fa-trash"></i>`
         text.appendChild(messege);
         inputs.value = "";
+        messege.querySelector("i").addEventListener("click" , remove);
+        function remove() {
+            messege.remove()
+        }
+        
         }
         
     }
